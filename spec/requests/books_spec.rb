@@ -5,8 +5,6 @@ RSpec.describe "Books", type: :request do
 
   let(:books) { [ruby_microscope, rails_tutorial, agile_web_dev] }
 
-  let(:json_body) { JSON.parse(response.body) }
-
   describe "GET /api/books" do
     before(:each) { books }
 
