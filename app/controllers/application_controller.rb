@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   rescue_from QueryBuilderError, with: :builder_error
   rescue_from RepresentationBuilderError, with: :builder_error
+  rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
 
   protected
 
@@ -28,5 +29,9 @@ class ApplicationController < ActionController::API
                                     params: params,
                                     actions: [:fields, :embeds]).to_json
     }
+  end
+
+  def resource_not_found
+    render(status: 404)
   end
 end

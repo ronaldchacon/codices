@@ -187,4 +187,26 @@ RSpec.describe "Books", type: :request do
       end
     end
   end
+
+  describe "GET /api/books/:id" do
+    context "with existing resource" do
+      before(:each) { get "/api/books/#{rails_tutorial.id}" }
+
+      it "gets HTTP status 200" do
+        expect(response.status).to eq 200
+      end
+
+      it "receives the 'rails_tutorial' book as JSON" do
+        expected = { data: BookPresenter.new(rails_tutorial, {}).fields.embeds }
+        expect(response.body).to eq expected.to_json
+      end
+    end
+
+    context "with nonexistant resource" do
+      it "returns HTTP status 404" do
+        get "/api/books/1234321"
+        expect(response.status).to eq 404
+      end
+    end
+  end
 end
