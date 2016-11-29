@@ -21,4 +21,12 @@ class ApplicationController < ActionController::API
                           response: response,
                           actions: actions).run
   end
+
+  def serialize(data)
+    {
+      json: Codices::Serializer.new(data: data,
+                                    params: params,
+                                    actions: [:fields, :embeds]).to_json
+    }
+  end
 end
