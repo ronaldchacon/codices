@@ -22,6 +22,10 @@ class ApplicationController < ActionController::API
     paginator.paginate
   end
 
+  def filter(scope)
+    Filter.new(scope, params.to_unsafe_hash).filter
+  end
+
   def current_url
     request.base_url + request.path
   end
