@@ -1,0 +1,171 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/tokens
+    body:
+      encoding: UTF-8
+      string: card[number]=4000000000000002&card[exp_month]=6&card[exp_year]=2017&card[cvc]=314
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.55.0
+      Authorization:
+      - Bearer sk_test_9b7n4XGYQJKQCKbR7AQoTLI3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.55.0","lang":"ruby","lang_version":"2.3.3 p222 (2016-11-21)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        ronald-mbp.local 15.6.0 Darwin Kernel Version 15.6.0: Mon Aug 29 20:21:34
+        PDT 2016; root:xnu-3248.60.11~1/RELEASE_X86_64 x86_64","hostname":"ronald-mbp.local"}'
+      Content-Length:
+      - '81'
+      Host:
+      - api.stripe.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 10 Dec 2016 08:26:05 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '779'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_9iXFv5ufAsYUQH
+      Stripe-Version:
+      - '2015-04-07'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "tok_19P6BF2AHqu9Ebl1afyLZFix",
+          "object": "token",
+          "card": {
+            "id": "card_19P6BF2AHqu9Ebl1ZaaD3tQS",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": "unchecked",
+            "dynamic_last4": null,
+            "exp_month": 6,
+            "exp_year": 2017,
+            "fingerprint": "Dtnq1OKgwgTAV0zA",
+            "funding": "credit",
+            "last4": "0002",
+            "metadata": {},
+            "name": null,
+            "tokenization_method": null
+          },
+          "client_ip": "76.21.79.152",
+          "created": 1481358365,
+          "livemode": false,
+          "type": "card",
+          "used": false
+        }
+    http_version: 
+  recorded_at: Sat, 10 Dec 2016 08:26:05 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: UTF-8
+      string: amount=299&currency=USD&source=tok_19P6BF2AHqu9Ebl1afyLZFix&metadata[purchase_id]=2&description=Charge+for+Ruby+Under+a+Microscope+%28Purchase+ID+2%29
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.55.0
+      Authorization:
+      - Bearer sk_test_9b7n4XGYQJKQCKbR7AQoTLI3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.55.0","lang":"ruby","lang_version":"2.3.3 p222 (2016-11-21)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
+        ronald-mbp.local 15.6.0 Darwin Kernel Version 15.6.0: Mon Aug 29 20:21:34
+        PDT 2016; root:xnu-3248.60.11~1/RELEASE_X86_64 x86_64","hostname":"ronald-mbp.local"}'
+      Idempotency-Key:
+      - 2016-12-10 00:26:05 -0800/2/2
+      Content-Length:
+      - '150'
+      Host:
+      - api.stripe.com
+  response:
+    status:
+      code: 402
+      message: Payment Required
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 10 Dec 2016 08:26:06 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '201'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Idempotency-Key:
+      - 2016-12-10 00:26:05 -0800/2/2
+      Original-Request:
+      - req_9iXF9lZbgHaJdj
+      Request-Id:
+      - req_9iXF9lZbgHaJdj
+      Stripe-Version:
+      - '2015-04-07'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "message": "Your card was declined.",
+            "type": "card_error",
+            "code": "card_declined",
+            "decline_code": "generic_decline",
+            "charge": "ch_19P6BG2AHqu9Ebl1E7vQM9ro"
+          }
+        }
+    http_version: 
+  recorded_at: Sat, 10 Dec 2016 08:26:06 GMT
+recorded_with: VCR 3.0.3

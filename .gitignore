@@ -22,3 +22,6 @@
 
 /public/uploads
 /images
+
+# Ignore application configuration
+/config/application.yml

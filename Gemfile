@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.3.1"
+ruby "2.3.3"
 
 gem "rails", "~> 5.0.0", ">= 5.0.0.1"
 gem "pg"
@@ -10,11 +10,15 @@ gem "kaminari"
 gem "pg_search"
 gem "bcrypt"
 gem "pundit"
+gem "money-rails"
+gem "stripe"
+gem "figaro"
 
 group :development, :test do
   gem "byebug", platform: :mri
   gem "rspec-rails"
   gem "factory_girl_rails"
+  gem "vcr"
 end
 
 group :development do
