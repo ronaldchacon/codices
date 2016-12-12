@@ -1,5 +1,6 @@
 class BookPresenter < BasePresenter
   cached
+  hypermedia
 
   build_with :id, :title, :subtitle, :isbn_10, :isbn_13, :description,
              :released_on, :publisher_id, :author_id, :created_at, :updated_at,

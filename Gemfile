@@ -15,6 +15,7 @@ gem "stripe"
 gem "figaro"
 gem "oj"
 gem "rack-cors", require: "rack/cors"
+gem "rack-accept"
 
 group :development, :test do
   gem "byebug", platform: :mri

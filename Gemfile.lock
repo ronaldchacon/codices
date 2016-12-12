@@ -117,6 +117,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -220,6 +222,7 @@ DEPENDENCIES
   pg_search
   puma (~> 3.0)
   pundit
+  rack-accept
   rack-cors
   rails (~> 5.0.0, >= 5.0.0.1)
   rspec-rails

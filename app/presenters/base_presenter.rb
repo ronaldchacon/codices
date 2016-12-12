@@ -33,6 +33,27 @@ class BasePresenter
     def cached?
       @cached
     end
+
+    def hypermedia
+      @hypermedia = true
+    end
+
+    def hypermedia?
+      @hypermedia
+    end
+
+    def model_name
+      @model_name ||= self.to_s.demodulize.underscore
+      .split('_').first.pluralize
+    end
+
+    def collection_methods
+      ["GET", "POST"]
+    end
+
+    def entity_methods
+      ["GET", "PATCH", "DELETE"]
+    end
   end
 
   attr_accessor :object, :params, :data
@@ -67,6 +88,10 @@ class BasePresenter
 
   def validated_embeds
     @embed_params ||= embed_picker.embeds.sort.join(",")
+  end
+
+  def hypermedia
+    @hypermedia ||= HypermediaBuilder.new(self).build
   end
 
   private

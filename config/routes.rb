@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     resources :purchases, only: [:index, :show, :create]
 
     get "/search/:text", to: "search#index"
+
+    get "/", to: "home#index"
   end
 
-  root to: "books#index"
+  root to: "home#index"
 end
