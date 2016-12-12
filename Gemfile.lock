@@ -106,6 +106,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    oj (2.18.0)
     pg (0.19.0)
     pg_search (1.0.6)
       activerecord (>= 3.1)
@@ -116,6 +117,7 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -213,10 +215,12 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   money-rails
+  oj
   pg
   pg_search
   puma (~> 3.0)
   pundit
+  rack-cors
   rails (~> 5.0.0, >= 5.0.0.1)
   rspec-rails
   shoulda-matchers

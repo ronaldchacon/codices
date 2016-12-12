@@ -28,11 +28,11 @@ class Authenticator
     return access_token if access_token.authenticate(token)
   end
 
-  private
-
   def credentials
     @credentials ||= Hash[@authorization.scan(AUTH_REGEX)]
   end
+
+  private
 
   def secure_compare_with_hashing(a, b)
     secure_compare(Digest::SHA1.hexdigest(a), Digest::SHA1.hexdigest(b))

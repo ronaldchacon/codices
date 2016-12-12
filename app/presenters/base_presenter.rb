@@ -25,6 +25,14 @@ class BasePresenter
     def filter_by(*args)
       @filter_attributes = args.map(&:to_s)
     end
+
+    def cached
+      @cached = true
+    end
+
+    def cached?
+      @cached
+    end
   end
 
   attr_accessor :object, :params, :data
@@ -51,5 +59,23 @@ class BasePresenter
 
   def embeds
     EmbedPicker.new(self).embed
+  end
+
+  def validated_fields
+    @fields_params ||= field_picker.fields.sort.join(",")
+  end
+
+  def validated_embeds
+    @embed_params ||= embed_picker.embeds.sort.join(",")
+  end
+
+  private
+
+  def field_picker
+    @field_picker ||= FieldPicker.new(self)
+  end
+
+  def embed_picker
+    @embed_picker ||= EmbedPicker.new(self)
   end
 end

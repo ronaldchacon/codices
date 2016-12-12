@@ -21,7 +21,7 @@ class Paginator
   private
 
   def show_first_link?
-    @scope.total_pages > 1 && !@scope.first_page?
+    total_pages > 1 && !@scope.first_page?
   end
 
   def show_previous_link?
@@ -29,11 +29,32 @@ class Paginator
   end
 
   def show_next_link?
-    !@scope.last_page?
+    last_page?
   end
 
   def show_last_link?
-    @scope.total_pages > 1 && !@scope.last_page?
+    total_pages > 1 && last_page?
+  end
+
+  def last_page?
+    return true unless last_updated_at
+    key = "qb/p/#{@scope.model}/#{last_updated_at.to_datetime}/last_page?"
+    Rails.cache.fetch(key) do
+      !@scope.last_page?
+    end
+  end
+
+  def total_pages
+    return 1 unless last_updated_at
+    key = "qb/p/#{@scope.model}/#{last_updated_at.to_datetime}/count"
+    Rails.cache.fetch(key) do
+      @scope.total_pages
+    end
+  end
+
+  def last_updated_at
+    @last_updated_at ||= @scope.unscoped.
+                         order("updated_at DESC").first.try(:updated_at)
   end
 
   def pages
